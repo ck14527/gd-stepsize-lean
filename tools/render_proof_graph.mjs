@@ -1,0 +1,15 @@
+import { instance } from '@viz-js/viz';
+import fs from 'node:fs';
+import path from 'node:path';
+const root=path.resolve(process.argv[2]||'.');
+const g=JSON.parse(fs.readFileSync(path.join(root,'audit/lean_theorem_graph.json'),'utf8'));
+const succ=Object.fromEntries(g.nodes.map(n=>[n,[]]));for(const e of g.edges)succ[e.from].push(e.to);
+const reduced=g.edges.filter(e=>{const todo=succ[e.from].filter(x=>x!==e.to),seen=new Set();while(todo.length){const n=todo.pop();if(n===e.to)return false;if(seen.has(n))continue;seen.add(n);todo.push(...succ[n]);}return true;});
+const esc=JSON.stringify;
+let dot='digraph G {graph [rankdir=TB,pad=0.4,nodesep=0.2,ranksep=0.5,bgcolor="white",labelloc=t,label="Actual Lean theorem dependencies (transitive reduction)\\n'+g.nodes.length+' named source theorems; full edges and exact types are in audit/",fontsize=22,fontname="Arial"];node [shape=box,style="rounded,filled",fillcolor="#edf4f6",color="#b6c9d3",fontname="Arial",fontsize=10];edge [color="#9fb1bb",arrowsize=0.5];\n';
+for(const n of g.nodes)dot+=esc(n)+' [label='+esc(n.replace(/^GD\./,''))+'];\n';for(const e of reduced)dot+=esc(e.from)+' -> '+esc(e.to)+';\n';dot+='}';
+fs.writeFileSync(path.join(root,'graphs/lean_proof_dependencies_reduced.dot'),dot);
+const viz=await instance();const svg=viz.renderString(dot,{format:'svg'}).replace(/<a\s[^>]*>/g,'').replace(/<\/a>/g,'');
+fs.writeFileSync(path.join(root,'graphs/lean_proof_dependencies_reduced.svg'),svg);
+fs.writeFileSync(path.join(root,'audit/proof_graph_render.json'),JSON.stringify({nodes:g.nodes.length,fullEdges:g.edges.length,reducedEdges:reduced.length},null,2));
+console.log(JSON.stringify({nodes:g.nodes.length,fullEdges:g.edges.length,reducedEdges:reduced.length}));

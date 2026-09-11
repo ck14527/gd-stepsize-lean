@@ -1,0 +1,59 @@
+name: Lean proofs and audit
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lean-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      LEAN_NUM_THREADS: '2'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install the pinned Lean toolchain and fetch mathlib cache
+        uses: leanprover/lean-action@v1
+        with:
+          auto-config: false
+          build: false
+          use-mathlib-cache: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build every proof and audit actual elaborated declarations
+        run: python3 tools/run_checks.py --require-scalar-complete
+      - name: Check that committed tables match the fresh audit
+        run: python3 tools/generate_docs.py --check
+      - name: Check repository documentation and workflow structure
+        run: python3 tools/check_repository.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: tools/package-lock.json
+      - name: Regenerate mathematical and Lean proof dependency graphs
+        run: |
+          npm ci --prefix tools
+          node tools/render_graph.mjs .
+          node tools/render_proof_graph.mjs .
+      - name: Attach fresh verification records
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lean-verification-${{ github.sha }}
+          path: |
+            audit/
+            logs/
+            graphs/
+          retention-days: 30

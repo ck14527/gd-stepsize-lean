@@ -1,0 +1,59 @@
+{
+  "cff-version": "1.2.0",
+  "message": "Please cite the accompanying mathematical paper and this version of its Lean formalization.",
+  "type": "software",
+  "title": "Lean formalization of Optimal Recursive Composition and Dyadic Phase Laws for Gradient Descent with Predetermined Stepsizes",
+  "authors": [
+    {
+      "given-names": "Yu",
+      "family-names": "Liu"
+    },
+    {
+      "given-names": "Kang",
+      "family-names": "Chen"
+    },
+    {
+      "given-names": "Rujun",
+      "family-names": "Jiang"
+    },
+    {
+      "given-names": "Tianyu",
+      "family-names": "Wang"
+    }
+  ],
+  "version": "1.0.0",
+  "keywords": [
+    "Lean 4",
+    "formal verification",
+    "gradient descent",
+    "stepsize schedules",
+    "dyadic phase"
+  ],
+  "repository-code": "https://github.com/ck14527/gd-stepsize-lean",
+  "references": [
+    {
+      "type": "article",
+      "title": "Optimal Recursive Composition and Dyadic Phase Laws for Gradient Descent with Predetermined Stepsizes",
+      "authors": [
+        {
+          "given-names": "Yu",
+          "family-names": "Liu"
+        },
+        {
+          "given-names": "Kang",
+          "family-names": "Chen"
+        },
+        {
+          "given-names": "Rujun",
+          "family-names": "Jiang"
+        },
+        {
+          "given-names": "Tianyu",
+          "family-names": "Wang"
+        }
+      ],
+      "year": 2026,
+      "url": "https://arxiv.org/abs/2609.11788"
+    }
+  ]
+}

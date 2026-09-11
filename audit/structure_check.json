@@ -1,0 +1,24 @@
+{
+  "core_structure_pass": true,
+  "proof_export_matches_inputs": true,
+  "full_paper_ready": false,
+  "scalar_numbered_results_complete": true,
+  "source_theorems": 569,
+  "exported_declarations": 1455,
+  "theorem_dependency_edges": 3852,
+  "unexpected_axioms": [],
+  "allowed_foundational_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "unsafe_in_proof_closure": [],
+  "generated_unsafe_constants_not_used_in_proofs": 75,
+  "coverage_counts": {
+    "verified_scalar_model": 36,
+    "partial": 0,
+    "open": 0
+  },
+  "errors": [],
+  "limits": "Statement-to-paper semantic correspondence is manually reviewed. Proposition definitions alone are not proofs. The numbered scalar results and external GD certificate interfaces are separate scopes."
+}

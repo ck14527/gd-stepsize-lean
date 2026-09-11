@@ -1,0 +1,67 @@
+id,kind,title,pages,prerequisites,formal_status
+1.1,Conjecture,Balanced-split conjecture,2,4.5,pending
+1.2,Remark,Scope of optimality,3,,pending
+2.1,Definition,Primitive certificate,3,,pending
+2.2,Definition,Optimized ConPP,4,"2.1,EXT18",pending
+2.3,Definition,s-composable certificate,4,,pending
+2.4,Definition,OBS-S recursion,5,"2.3,EXT9",pending
+2.5,Proposition,Treewise conjugacy and Bellman recursion,5,"2.2,2.4,EQ5,2.6",verified_scalar_model
+2.6,Proposition,Kernel properties,6,KDEF,verified_scalar_model
+3.1,Theorem,Sharp four-point rearrangement,6,"2.6,3.2,3.3,3.4",verified_scalar_model
+3.2,Lemma,Sign of conjugate polynomial,7,"2.6,PDEF",verified_scalar_model
+3.3,Lemma,Pairing-difference identity,7,"PDEF,QDEF",verified_scalar_model
+3.4,Lemma,Quartic evaluation,7,"KDEF,QDEF",verified_scalar_model
+4.1,Theorem,Abstract balanced-composition principle,8,,verified_scalar_model
+4.2,Corollary,Balanced optimality and supercomposition,9,"2.5,2.6,3.1,4.1",verified_scalar_model
+4.3,Lemma,All supercomposition equality cases,10,"2.6,3.1,4.2",verified_scalar_model
+4.4,Corollary,Complete maximizing root-split set,10,"2.5,4.2,4.3",verified_scalar_model
+4.5,Theorem,Resolution of Zhang-Jiang conjecture,11,"2.5,4.2,4.4",verified_scalar_model
+4.6,Corollary,All optimal composition trees,11,"2.5,2.6,4.3,4.4",verified_scalar_model
+ALG1,Algorithm,Binary evaluation and prefix invariant,12,"2.6,4.2",pending
+5.1,Lemma,Silver power inequality,12,KDEF,verified_scalar_model
+5.2,Proposition,Sharp power envelope; dyadic equality,12,"2.6,4.2,5.1",verified_scalar_model
+5.3,Lemma,Adjacent-ratio contraction,13,"2.6,4.2,ALG1",verified_scalar_model
+5.4,Theorem,Canonical bi-Lipschitz interpolation,13,"2.6,EQ21,5.3",verified_scalar_model
+5.5,Theorem,Exact symmetric phase and uniqueness,14,"EQ21,5.2,5.4,DENSITY",verified_scalar_model
+5.6,Remark,Certified minimum enclosure,14,"C.3,CERT17",pending
+5.7,Corollary,Symmetric scalar and rate cluster intervals,14,"5.5,DENSITY",verified_scalar_model
+5.8,Theorem,Tight objective-gap phase,16,"2.5,5.5,5.7,EXT18,EXT9",verified_scalar_model
+5.9,Remark,Tightness and scope,16,"2.5,5.8,EXT18,EXT9",pending
+6.1,Definition,f-composable certificate,16,,pending
+6.2,Proposition,Reciprocal sandwich,17,"2.5,4.2,5.5,D.1,FREC,RAYS",verified_scalar_model
+6.3,Theorem,Uniform OBS-F phase and cluster interval,18,"5.5,6.2,D.2,RAYS,DENSITY",verified_scalar_model
+6.4,Lemma,Sharp support inequality; equality ratio,19,ADEF,verified_scalar_model
+6.5,Theorem,Nonconstant phase; strict support separation,19,"6.3,D.3,D.6,D.7,D.8,D.9",verified_scalar_model
+B.1,Theorem,Number of optimal plane trees,24,"4.4,4.6",verified_scalar_model
+C.1,Theorem,Derivative products and one-sided derivatives,28,"5.3,5.4",verified_scalar_model
+C.2,Corollary,Strict corner at 3/2,30,"C.1,CERT6",verified_scalar_model
+C.3,Theorem,Nested finite phase-minimum certificates,31,"2.6,EQ21,5.2,5.4,5.5",verified_scalar_model
+D.1,Lemma,Local A-versus-K inequalities,32,"2.6,ADEF",verified_scalar_model
+D.2,Lemma,"Discrete modulus for U, W, C",32,"4.2,5.2,5.4,5.5,6.2,FREC",verified_scalar_model
+D.3,Proposition,Support barrier and exact deficit identity,33,"5.2,6.4,FREC",verified_scalar_model
+D.4,Lemma,Strict interior power envelope,34,"2.6,5.1,5.2,5.4,5.5",verified_scalar_model
+D.5,Lemma,Contact fraction and dyadic exclusion,34,6.4,verified_scalar_model
+D.6,Theorem,Strict dyadic-ray separation,35,"6.3,D.8",verified_scalar_model
+D.7,Lemma,Constant-phase rigidity,35,"6.3,6.4,D.3,EQ21,FREC",verified_scalar_model
+D.8,Theorem,Strict separation at every phase,36,"CONTACT,D.4,D.5,6.3",verified_scalar_model
+D.9,Proposition,Upper phase enclosure,36,"5.5,6.3,6.4,FREC",verified_scalar_model
+SMALL,Auxiliary,Uniform small-pivot estimate (75),34,"D.3,5.5,6.4",pending
+CONCENTRATION,Auxiliary,First macro pivot on the actual finite spine,"34,35","SMALL,D.3,D.5,6.4",pending
+CONTACT,Auxiliary,Contact propagation using the actual continuation,35,"CONCENTRATION,6.3,5.5",pending
+EXT18,External,Zhang-Jiang: ConPP closure and Huber bound,"4,15",,external
+EXT9,External,Grimmer-Shu-Wang: s/f joins and guarantees,"4,16,17",,external
+EXT36,External,Grimmer-Shu-Wang: dyadic improvement and lower bound,17,,external
+KDEF,Definition,"Radical kernel K, rho, p, q","5,6,12",,pending
+ADEF,Definition,Asymmetric radical kernel A,17,,pending
+PDEF,Definition,Four-factor conjugate polynomial (13),6,KDEF,pending
+QDEF,Definition,Elementary symmetric quartic (14),7,,pending
+EQ5,Bridge,Affine and reciprocal conjugacies (5),5,KDEF,pending
+EQ21,Bridge,Exact dyadic scaling (21),12,"2.6,4.2",pending
+FREC,Bridge,OBS-F reciprocal recursion (37),17,"6.1,2.5,ADEF,EXT9",pending
+RAYS,Bridge,Existence and invariance of fixed-ray limits,17,"FREC,D.1",pending
+DENSITY,Bridge,Density of integer logarithmic phases,"14,19",,pending
+CERT6,Certificate,Six-step rational interval certificate,"30,31","5.3,5.4",pending
+CERT17,Certificate,Level-17 outward-rounded certificate,31,4.2,pending
+EQ66,Unnumbered,Marginal increment law (66),32,"EQ21,C.1",pending
+SEED,Unnumbered,Fixed dyadic seeds preserve the exponent,32,EQ21,pending
+BEXP,Unnumbered,Exponential multiplicity on N=3*2^k,25,B.1,pending

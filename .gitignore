@@ -1,0 +1,17 @@
+.lake
+tools/node_modules
+__pycache__/
+*.pyc
+*.olean
+*.ilean
+*.o
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+.DS_Store
+*.zip
+*.bundle
+/logs/
+/paper/

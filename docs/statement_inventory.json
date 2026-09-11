@@ -1,0 +1,957 @@
+{
+  "schema": 1,
+  "manuscript": "Audited manuscript snapshot identified by source_pdf_sha256",
+  "source_pdf_sha256": "b318ace3a0645b0096512f36cae11f4019d679763cf2c4504f55c9eb5c35d4ca",
+  "edge_direction": "prerequisite -> dependent",
+  "dag_basis": "Mathematically reviewed dependencies between numbered results and supporting definitions, lemmas, and external interfaces. Library foundations are not exhaustively expanded; actual Lean proof dependencies are recorded separately.",
+  "topological_order": [
+    "1.2",
+    "2.1",
+    "2.3",
+    "4.1",
+    "6.1",
+    "ADEF",
+    "DENSITY",
+    "EXT18",
+    "EXT36",
+    "EXT9",
+    "KDEF",
+    "QDEF",
+    "2.2",
+    "2.4",
+    "2.6",
+    "3.4",
+    "5.1",
+    "6.4",
+    "EQ5",
+    "PDEF",
+    "2.5",
+    "3.2",
+    "3.3",
+    "D.1",
+    "D.5",
+    "3.1",
+    "FREC",
+    "4.2",
+    "RAYS",
+    "4.3",
+    "5.2",
+    "ALG1",
+    "CERT17",
+    "EQ21",
+    "4.4",
+    "5.3",
+    "D.3",
+    "SEED",
+    "4.5",
+    "4.6",
+    "5.4",
+    "1.1",
+    "5.5",
+    "B.1",
+    "C.1",
+    "CERT6",
+    "5.7",
+    "6.2",
+    "BEXP",
+    "C.2",
+    "C.3",
+    "D.4",
+    "EQ66",
+    "SMALL",
+    "5.6",
+    "5.8",
+    "CONCENTRATION",
+    "D.2",
+    "5.9",
+    "6.3",
+    "CONTACT",
+    "D.7",
+    "D.9",
+    "D.8",
+    "D.6",
+    "6.5"
+  ],
+  "nodes": [
+    {
+      "id": "1.1",
+      "kind": "Conjecture",
+      "title": "Balanced-split conjecture",
+      "pages": [
+        2
+      ],
+      "depends_on": [
+        "4.5"
+      ],
+      "statement_excerpt": "Conjecture 1.1 (Conjecture 4.17 in Zhang and Jiang [18]). For every n ≥ 1, it holds that:\n                                             \u0010                             \u0011\n                              (n)               (⌊(n−1)/2⌋)    (⌈(n−1)/2⌉)\n                         1⊤ h◦ = 1⊤ ConPP h◦                , h◦             .\n\nMoreover, if n = ν2ℓ − 1 with ν > 1 odd and ℓ ≥ 1, then, for every i ∈ {−1, 0, 1},\n                                                ((ν+i)2ℓ−1 −1)    ((ν−i)2ℓ−1 −1)\n                                              \u0010                                  \u0011\n                               (n)\n                          1⊤ h◦ = 1⊤ ConPP h◦                  , h◦                .\n\n    The first assertion concerns existence, not uniqueness; the second specifies the additional predicted ties.\nZhang and Jiang [18] verified both identities numerically through n = 104 . Away from dyadic horizons the\nclaim is substantive because ConPP composition is nonassociative: proving it must control all root splits\nand, recursively, all composition trees.\n    Balanced recursion also exposes a second phenomenon. Exact dyadic scaling does not lead to one\nnormalized asymptotic constant; instead, the normalized values are governed by a continuous periodic\nfunction of log2 N . Such fluctuations are familiar for linear half-split recurrences [10], while the nonlinear\nmidpoint rule appearing here is reminiscent of de Rham-type equations [14]. Neither theory directly covers\nthe present nonlinear composition law.\n\nContributions. Our main contribution is a complete solution of the symmetric primitive/OBS-S composi-\ntion problem (Conjecture 1.1), together with an asymptotic analysis of both the symmetric and asymmetric\noptimized recursions. Specifically, the results are:\n\n  (i) Rearrangement and b"
+    },
+    {
+      "id": "1.2",
+      "kind": "Remark",
+      "title": "Scope of optimality",
+      "pages": [
+        3
+      ],
+      "depends_on": [],
+      "statement_excerpt": "Remark 1.2 (Scope). Throughout, “optimal” means optimal within the stated recursively generated\ncomposition class. The results do not prove minimax optimality among all positive predetermined schedules\nin (1). The OBS-F minimax conjecture of Grimmer et al. [9], the optimal anytime exponent [19, 17], and\ntransfers to proximal or composite optimization [3, 4] remain separate questions.\n\nOrganization. Section 2 derives the common scalar program. Sections 3 and 4 prove balanced optimality\nand classify all optimizers. Section 5 develops the phase law and its tight objective consequences. Section 6\ntreats the asymmetric OBS-F recursion. Lengthy algebraic and regularity arguments are deferred to the\nappendices.\n\n\n2       Preliminaries\nThis section introduces the two certificate-based composition frameworks used in the paper and derives\ntheir common scalar recursion. We retain the certificate statements needed to interpret the optimized\nschedules and their objective guarantees, while taking the closure theorems of Zhang and Jiang [18] and\nGrimmer et al. [9] as inputs. Throughout this section, we normalize the smoothness constant to L = 1; the\ngeneral factor L is restored in Section 5.\n\n2.1      Certificate interfaces and recursive schedule classes\nLet F1 be the class of differentiable convex functions with 1-Lipschitz gradient and a nonempty minimizer\nset. For a schedule h = (h0 , . . . , hn−1 )⊤ and the associated gradient-descent trajectory, write fi = f (xi )\nand gi = ∇f (xi ), and fix a minimizer x∗ with f∗ = f (x∗ ). Smooth convex interpolation gives\n                                                              1      2\n                                 Qi,∗ := fi − f∗ − ⟨gi , xi − x∗ ⟩ +\n                                                                ∥gi ∥ ≤ 0."
+    },
+    {
+      "id": "2.1",
+      "kind": "Definition",
+      "title": "Primitive certificate",
+      "pages": [
+        3
+      ],
+      "depends_on": [],
+      "statement_excerpt": "Definition 2.1 (Definition 2.7 in Zhang and Jiang [18]). A schedule h ∈ Rn+ is primitive if, with H := 1⊤ h,\nevery f ∈ F1 and every associated trajectory satisfy\n                                n−1\n                 1           2\n                                X                          1          2  H(H + 1)      2\n                   ∥x0 − x∗ ∥ +     hi Qi,∗ − H(fn − f∗ ) ≥ ∥xn − x∗ ∥ +          ∥gn ∥ .\n                 2              i=0\n                                                           2                2\nThe empty schedule is primitive with H = 0.\n\n\n                                                        3\n\f    The terminal distance–gradient energy above is the interface used by the composition theorem. It also\nyields the tight objective consequence\n                                                        1    1          2\n                                         fn − f ∗ ≤         · ∥x0 − x∗ ∥ ,                                     (2)\n                                                      2H + 1 2\nwith equality on a suitable one-dimensional Huber instance [18, Theorem 2.6, Proposition 2.8, and"
+    },
+    {
+      "id": "2.2",
+      "kind": "Definition",
+      "title": "Optimized ConPP",
+      "pages": [
+        4
+      ],
+      "depends_on": [
+        "2.1",
+        "EXT18"
+      ],
+      "statement_excerpt": "Definition 2.2 (Definition 4.1 in Zhang and Jiang [18]). Set h◦ = [ ]⊤ . For n ≥ 1, choose\n                                               n        \u0010              \u0011            o\n                 (n)                     (n)              (k)  (n−k−1)\n                h◦ ∈ arg max 1⊤ h, H◦ := ConPP h◦ , h◦                   :0≤k<n .\n                               (n)\n                           h∈H◦\n\nIf the maximizer is not unique, any maximizing schedule may be selected.\n   Since x + y + φ(x, y) is strictly increasing in each argument, this recursion implements the principle of\n             (n)\noptimality: h◦ has maximum total stepsize among all n-step schedules generated recursively from the\nempty schedule by ConPP.\n\n2.1.2   s-composable schedules and OBS-S\nThe s-composable framework of Grimmer et al. [9] uses a rate parameter η that simultaneously matches\nthe canonical quadratic and Huber worst cases. Its certificate is symmetric in the sense that it controls the\nfinal objective gap, distance, and gradient norm through the same parameter."
+    },
+    {
+      "id": "2.3",
+      "kind": "Definition",
+      "title": "s-composable certificate",
+      "pages": [
+        4
+      ],
+      "depends_on": [],
+      "statement_excerpt": "Definition 2.3 (Definition 3 in Grimmer et al. [9]). A positive schedule h = (h0 , . . . , hn−1 )⊤ is s-composable\nwith rate η > 0 if for every f ∈ F1 and every associated trajectory, it holds that\n                      1−η      2  η2           2                         η2           2\n                          ∥gn ∥ +    ∥xn − x∗ ∥ + (η − η 2 )(fn − f∗ ) ≤    ∥x0 − x∗ ∥ ,\n                       2          2                                      2\nand\n                                                                     n−1\n                                                    1                Y\n                                         η=        Pn−1          =         (hi − 1).\n                                              1+       i=0 hi        i=0\n\n   The sum–product identity is part of the certificate interface and recovers η from the total stepsize. The\ncorresponding tight objective bound is\n                                                        η  1          2\n                                          fn − f ∗ ≤      · ∥x0 − x∗ ∥ ,                                       (3)\n                                                       2−η 2\nwith matching quadratic and Huber instances [9, Proposition 1]. Hence minimizing η strengthens the\ncertified objective guarantee.\n    If a and b are s-composable with rates α and β, respectively, their s-join is\n                                                                p\n                           \u0002 ⊤             ⊤ ⊤\n                                            \u0003                     α2 + 6αβ + β 2 − (α + β)\n                  a ▷◁ b := a , µ(α, β), b     , µ(α, β) := 1 +                            .\n                                                                           2αβ\nThe joined schedule is s-composable with rate"
+    },
+    {
+      "id": "2.4",
+      "kind": "Definition",
+      "title": "OBS-S recursion",
+      "pages": [
+        5
+      ],
+      "depends_on": [
+        "2.3",
+        "EXT9"
+      ],
+      "statement_excerpt": "Definition 2.4 (Optimized Basic s-composable Schedule (OBS-S) in Grimmer et al. [9]). Set hOBS-S (0) =\n[ ]⊤ and η OBS-S (0) = 1. For N ≥ 2, define\n\n                      η OBS-S (N − 1) := min J η OBS-S (m − 1), η OBS-S (N − m − 1) .\n                                                                                   \u0001\n                                        1≤m<N\n\nIf mN is any minimizing index, set\n\n                       hOBS-S (N − 1) := hOBS-S (mN − 1) ▷◁ hOBS-S (N − mN − 1).\n\n    Thus η OBS-S (N − 1) is the minimum rate among all basic s-composable schedules with N − 1 steps.\nDifferent minimizing splits may yield different schedules, but the optimized rate is unambiguous.\n\n2.2    The common scalar Bellman program\nWe use the leaf-count convention to describe the structure of schedules. A schedule containing n gradient\nsteps can be represented by a full binary composition tree with N = n + 1 leaves. Each leaf represents the\nempty schedule, and every internal node inserts one joining step between the schedules represented by its\ntwo children. Define\n                                              (N −1)\n                                HN := 1⊤ h◦            ,   sN := η OBS-S (N − 1).\n\nThen, the empty schedule gives H1 = 0 and s1 = 1, and the two literature recursions become\n                                                         \u0001\n             HN = max Hm + HN −m + φ(Hm , HN −m ) , sN = min J (sm , sN −m ).\n                     1≤m<N                                                        1≤m<N\n\n   We now introduce the symmetric composition law\n                                            p\n                                     x + y + x2 + 6xy + y 2\n                          K(x, y) :=                        ,                   x, y ≥ 0.                (4)\n                                                2\nDirect substitution gives the reciprocal-affine conjugacies\n                           1\n                                   = K(x, y),     x + y + φ(x, y) + 1 = K(x + 1, y + 1),                 (5)\n                      J (1/x, 1/y)\nand\n                                         \u0012                     \u0013\n                                              1   1\n                                        µ       ,                  = φ(x, y).\n                                             x+1 y+1\nHere the first identity is stated for x, y > 0, while the remaining two hold for x, y ≥ 0. The last identity\nshows that corresponding ConPP and s-join nodes insert the same numerical step, not merely that their\noptimized scalar values agree."
+    },
+    {
+      "id": "2.5",
+      "kind": "Proposition",
+      "title": "Treewise conjugacy and Bellman recursion",
+      "pages": [
+        5
+      ],
+      "depends_on": [
+        "2.2",
+        "2.4",
+        "EQ5",
+        "2.6"
+      ],
+      "statement_excerpt": "Proposition 2.5. For every N ≥ 1,\n                                                                       1\n                                             UN := HN + 1 =              .\n                                                                      sN\nThe common value satisfies\n\n                             U1 = 1,    UN = max K(Um , UN −m )                 (N ≥ 2).                 (6)\n                                                1≤m<N"
+    },
+    {
+      "id": "2.6",
+      "kind": "Proposition",
+      "title": "Kernel properties",
+      "pages": [
+        6
+      ],
+      "depends_on": [
+        "KDEF"
+      ],
+      "statement_excerpt": "Proposition 2.6. The map K : [0, +∞)2 → [0, +∞) is continuous, symmetric, positively homogeneous,\nand strictly increasing in each coordinate. With\n                                                       √\n                                               ρ := 1 + 2,\n\nit satisfies\n\n                   K(0, x) = x,     K(x, x) = ρx,      K(x, y) > x + y > max{x, y}      (x, y > 0).          (8)\n\nMoreover, for x, y, x′ , y ′ > 0,\n                                        \u001a ′ ′\u001b\n                                                 K(x′ , y ′ )\n                                                                   \u001a ′ ′\u001b\n                                         x y                        x y\n                                    min    ,   ≤              ≤ max   ,   ,                                  (9)\n                                         x y     K(x, y)            x y\nand both inequalities are strict if x′ /x ̸= y ′ /y."
+    },
+    {
+      "id": "3.1",
+      "kind": "Theorem",
+      "title": "Sharp four-point rearrangement",
+      "pages": [
+        6
+      ],
+      "depends_on": [
+        "2.6",
+        "3.2",
+        "3.3",
+        "3.4"
+      ],
+      "statement_excerpt": "Theorem 3.1. For every 0 ≤ a ≤ b ≤ c ≤ d,\n                                    \u0001                    \u0001                    \u0001\n                  K K(a, b), K(c, d) ≤ K K(a, c), K(b, d) ≤ K K(a, d), K(b, c) .                            (10)\n\nMoreover,\n                                        \u0001                    \u0001\n                      K K(a, b), K(c, d) = K K(a, c), K(b, d)         ⇐⇒       b = c or ad = bc,            (11)\n                                        \u0001                    \u0001\n                      K K(a, c), K(b, d) = K K(a, d), K(b, c)         ⇐⇒       a = b or c = d.              (12)\n\n    The proof is based on an algebraic sign certificate. For x, y ≥ 0, define the two conjugate roots\n                                                        p\n                                               x + y ± x2 + 6xy + y 2\n                                  r± (x, y) :=                           .\n                                                           2\nThey are the roots of\n\n                                                 r2 − (x + y)r − xy = 0,\n\nwith r+ (x, y) = K(x, y) and r− (x, y) ≤ 0. For the pairing (a, b) | (c, d), where a, b, c, d ≥ 0, define\n                                    Y h                                                       i\n                                            z 2 − rσ (a, b) + rτ (c, d) z − rσ (a, b)rτ (c, d) .\n                                                                       \u0001\n                    Pab|cd (z) :=                                                                           (13)\n                                    σ,τ ∈{+,−}\n\nThe four quadratic factors account for every choice of the two inner conjugate roots. In particular, the\ndistinguished positive root associated with this pairing is"
+    },
+    {
+      "id": "3.2",
+      "kind": "Lemma",
+      "title": "Sign of conjugate polynomial",
+      "pages": [
+        7
+      ],
+      "depends_on": [
+        "2.6",
+        "PDEF"
+      ],
+      "statement_excerpt": "Lemma 3.2. Let a, b, c, d ≥ 0 and let Pab|cd be defined in (13). Define\n\n                                         Mab|cd := max{K(a, b), K(c, d)}.\n\nThen, for every z > Mab|cd ,\n                                                                        \u0001\n                                         sgn Pab|cd (z) = sgn z − Zab|cd .\n\n    Let ej = ej (a, b, c, d) denote the elementary symmetric polynomial of degree j in the four inputs. For a\nscalar E, define the auxiliary quartic\n\n                                 QE (z) := z 4 − e1 z 3 − (e2 + 2E)z 2 − e3 z + e4 .                        (14)\n\nThe next identity isolates the effect of changing the lower-level pairing. Its factorization is the algebraic\ncore of the rearrangement argument: the order-dependent factors are explicit, while all remaining sign\ninformation is concentrated in a single quartic. A complete coefficient-level derivation is given in Section A.2.",
+      "proof_pages": [
+        22
+      ]
+    },
+    {
+      "id": "3.3",
+      "kind": "Lemma",
+      "title": "Pairing-difference identity",
+      "pages": [
+        7
+      ],
+      "depends_on": [
+        "PDEF",
+        "QDEF"
+      ],
+      "statement_excerpt": "Lemma 3.3. For all a, b, c, d ≥ 0,\n\n                               Pac|bd (z) − Pab|cd (z) = 2z 2 (d − a)(c − b)Qad+bc (z),\n                               Pad|bc (z) − Pac|bd (z) = 2z 2 (b − a)(d − c)Qab+cd (z).\n\n   The following evaluation formula determines the sign of the quartic at the distinguished positive root\nwithout solving the degree-eight equation. Notice that the factor (uv + uz + vz)/(uv) is positive, hence only\nthe quadratic-form expression abv 2 + cdu2 − Euv matters. The full reduction is deferred to Section A.3.",
+      "proof_pages": [
+        22,
+        23
+      ]
+    },
+    {
+      "id": "3.4",
+      "kind": "Lemma",
+      "title": "Quartic evaluation",
+      "pages": [
+        7
+      ],
+      "depends_on": [
+        "KDEF",
+        "QDEF"
+      ],
+      "statement_excerpt": "Lemma 3.4. Fix a pairing (a, b) | (c, d), where a, b, c, d ≥ 0, and set\n\n                                    u = K(a, b),    v = K(c, d),      z = K(u, v).\n\nIf u, v > 0, then, for every scalar E,\n                                                               \u0001\n                                           2 abv 2 + cdu2 − Euv (uv + uz + vz)\n                                QE (z) =                                       ,\n                                                            uv\nwhere QE is formed from the four inputs a, b, c, d.\n   With the above lemmas in place, we are ready to prove the four-point rearrangement theorem.\nProof of Theorem 3.1. For brevity, write\n                                                                         \u0001\n                                        Z0 := Zab|cd = K K(a, b), K(c, d) ,\n                                                                         \u0001\n                                        Z1 := Zac|bd = K K(a, c), K(b, d) ,\n                                                                         \u0001\n                                        Z2 := Zad|bc = K K(a, d), K(b, c) .\n\nIf b = 0, then a = 0, and K(0, x) = x gives Z0 = Z1 = Z2 = K(c, d). Both inequalities and their stated\nequality conditions therefore hold. Henceforth assume b > 0, so all inner quantities appearing below are\npositive.\n    For the first comparison, set\n\n                                u = K(a, b),    v = K(c, d),      z0 = K(u, v) = Z0 .\n\nThe quadratic form in Lemma 3.4 factors as\n\n                                abv 2 + cdu2 − (ad + bc)uv = (av − cu)(bv − du).                            (15)\n\nBy homogeneity of K,\n\n                    av = K(ac, ad),      cu = K(ac, bc),       bv = K(bc, bd),   du = K(ad, bd).\n\nThus, by strict coordinatewise monotonicity of K, av − c",
+      "proof_pages": [
+        24
+      ]
+    },
+    {
+      "id": "4.1",
+      "kind": "Theorem",
+      "title": "Abstract balanced-composition principle",
+      "pages": [
+        8
+      ],
+      "depends_on": [],
+      "statement_excerpt": "Theorem 4.1. Let ⋆ : [0, ∞)2 → [0, ∞) be symmetric, positively homogeneous, and strictly increasing in\neach coordinate. Assume that, for some λ > 1,\n\n                                              0 ⋆ x = x,       x ⋆ x = λx,\n\nhold for all x ≥ 0, and that the four-point rearrangement inequalities\n\n                              (a ⋆ b) ⋆ (c ⋆ d) ≤ (a ⋆ c) ⋆ (b ⋆ d) ≤ (a ⋆ d) ⋆ (b ⋆ c)\n\n\n\n                                                           8\n\fhold whenever 0 ≤ a ≤ b ≤ c ≤ d. Define the balanced sequence {VN }N ≥0 by\n\n                             V0 = 0,    V1 = 1,   VN = V⌊N/2⌋ ⋆ V⌈N/2⌉ (N ≥ 2),                            (17)\n\nand define the Bellman sequence {WN }N ≥1 by\n\n                              W1 = 1,     WN = max Wm ⋆ WN −m (N ≥ 2).                                     (18)\n                                                  1≤m<N\n\nThen {VN }N ≥0 is strictly increasing and satisfies the supercomposition inequality\n\n                                        Vm ⋆ Vn ≤ Vm+n      (m, n ≥ 0).\n\nConsequently, WN = VN for every N ≥ 1."
+    },
+    {
+      "id": "4.2",
+      "kind": "Corollary",
+      "title": "Balanced optimality and supercomposition",
+      "pages": [
+        9
+      ],
+      "depends_on": [
+        "2.5",
+        "2.6",
+        "3.1",
+        "4.1"
+      ],
+      "statement_excerpt": "Corollary 4.2. Extend the common scalar sequence by U0 := 0. Then {UN }N ≥0 is strictly increasing, and\nfor all m, n ≥ 0,\n\n                                             K(Um , Un ) ≤ Um+n .\n\nMoreover, every N ≥ 2 satisfies the balanced recurrence\n                                                                \u0001\n                                          UN = K U⌊N/2⌋ , U⌈N/2⌉ .                                         (19)\n\nIn particular, the balanced root split solves the Bellman program (6) at every leaf count."
+    },
+    {
+      "id": "4.3",
+      "kind": "Lemma",
+      "title": "All supercomposition equality cases",
+      "pages": [
+        10
+      ],
+      "depends_on": [
+        "2.6",
+        "3.1",
+        "4.2"
+      ],
+      "statement_excerpt": "Lemma 4.3. For positive integers m, n,\n\n                                              K(Um , Un ) = Um+n\n\nif and only if either\n  (i) m = n; or\n (ii) there exist integers k ≥ 0 and r ≥ 1 such that\n\n                                              {m, n} = {2k r, 2k (r + 1)}."
+    },
+    {
+      "id": "4.4",
+      "kind": "Corollary",
+      "title": "Complete maximizing root-split set",
+      "pages": [
+        10
+      ],
+      "depends_on": [
+        "2.5",
+        "4.2",
+        "4.3"
+      ],
+      "statement_excerpt": "Corollary 4.4. For N ≥ 2, define the set of maximizing left-child leaf counts by\n\n                                        MN := arg max K(Um , UN −m ).\n                                                 1≤m<N\n\n\nWrite N = ν · 2ℓ , where ν is odd. Then\n  (i) If ν = 1, then\n\n                                                    MN = {N/2}.\n\n (ii) If ν > 1 and ℓ = 0, then\n\n                                           MN = {(N − 1)/2, (N + 1)/2}.\n\n (iii) If ν > 1 and ℓ ≥ 1, then\n\n                                     MN = (ν − 1)2ℓ−1 , ν · 2ℓ−1 , (ν + 1)2ℓ−1 .\n                                         \b\n                                                                                                            (20)\n\nIn particular, there are no maximizing root splits beyond those listed above.\n\n\n\n\n                                                        10\n\fProof. By the Bellman recursion and Corollary 4.2, a split is maximizing exactly when\n\n                                     K(Um , UN −m ) = UN = Um+(N −m) .\n\nThe equality characterization in Lemma 4.3 therefore applies. The equal-child alternative gives the unique\nbalanced split m = N/2 whenever N is even. Under the scaled-consecutive alternative,\n\n                                     N = 2k r + 2k (r + 1) = 2k (2r + 1).\n\nSince 2r + 1 is odd, uniqueness of the factorization of N into an odd part and a power of two forces k = ℓ\nand 2r + 1 = ν. Thus r = (ν − 1)/2, and the two child counts are\n\n                                2ℓ r = 2ℓ−1 (ν − 1),   2ℓ (r + 1) = 2ℓ−1 (ν + 1).\n\nIf ν = 1, this alternative is excluded by r ≥ 1, leaving only the equal split. If ν > 1 and ℓ = 0, N is odd and\nonly the two orientations of the consecutive split remain. If ν > 1 and ℓ ≥ 1, the equal split contributes\n2ℓ−1 ν in addition to the two orientations of the scaled-consecutive split. This proves all three cases and\ntheir completeness.\n  We finish by translating leaf counts into the step-count notation used by Zhang and Jiang [18]. This\nmakes explicit both the balanced assertion and all the additional ties in their conjecture."
+    },
+    {
+      "id": "4.5",
+      "kind": "Theorem",
+      "title": "Resolution of Zhang-Jiang conjecture",
+      "pages": [
+        11
+      ],
+      "depends_on": [
+        "2.5",
+        "4.2",
+        "4.4"
+      ],
+      "statement_excerpt": "Theorem 4.5 (Conjecture 4.17 in Zhang and Jiang [18]). For every step count n ≥ 1,\n                                             \u0010                            \u0011\n                              (n)              (⌊(n−1)/2⌋)    (⌈(n−1)/2⌉)\n                         1⊤ h◦ = 1⊤ ConPP h◦               , h◦             .\n\nMoreover, if n = ν · 2ℓ − 1 with ν > 1 odd and ℓ ≥ 1, then, for every i ∈ {−1, 0, 1},\n                                                  ((ν+i)2ℓ−1 −1)    ((ν−i)2ℓ−1 −1)\n                                               \u0010                                   \u0011\n                                (n)\n                            1⊤ h◦ = 1⊤ ConPP h◦                  , h◦                ,\n\nand no other ConPP root split between two recursively optimized primitive schedules attains the same total\nstepsize."
+    },
+    {
+      "id": "4.6",
+      "kind": "Corollary",
+      "title": "All optimal composition trees",
+      "pages": [
+        11
+      ],
+      "depends_on": [
+        "2.5",
+        "2.6",
+        "4.3",
+        "4.4"
+      ],
+      "statement_excerpt": "Corollary 4.6. Let T be an ordered full binary composition tree with N leaves, assign value 1 to every\nleaf, and evaluate each internal node using K. Then T attains the optimal root value UN if and only if,\nat every internal node with j descendant leaves, its two child subtrees are optimal for their respective leaf\ncounts and its left-child leaf count belongs to Mj . Equivalently, T is optimal if and only if every internal\nsplit satisfies one of the two equality patterns in Lemma 4.3."
+    },
+    {
+      "id": "ALG1",
+      "kind": "Algorithm",
+      "title": "Binary evaluation and prefix invariant",
+      "pages": [
+        12
+      ],
+      "depends_on": [
+        "2.6",
+        "4.2"
+      ],
+      "statement_excerpt": "Algorithm 1 Direct Evaluation of UN from the Binary Expansion of N\nInput: An integer N ≥ 1.\nOutput: The scalar UN .\n 1 k ← ⌊log2 N ⌋ + 1 and compute the binary expansion N = (ξk−1 · · · ξ0 )2 , where ξk−1 = 1.\n 2 (a, b) ← (0, 1).\n 3 for j = k − 1, k − 2, . . . , 0 do\n 4     c ← K(a, b).\n 5     if ξj = 0 then\n 6         (a, b) ← (ρa, c).\n 7     else\n 8         (a, b) ← (c, ρb).\n 9     end\n10 end\n11 return a.\n\n\n\n     Indeed, after a binary prefix of value r has been processed, the invariant is (a, b) = (Ur , Ur+1 ). The\ntwo identities above map this pair to (U2r , U2r+1 ) or (U2r+1 , U2r+2 ) according to the next digit. Hence, at\ntermination, a = UN . Since k = ⌊log2 N ⌋ + 1, Algorithm 1 uses exactly k evaluations of K, k multiplications\nby ρ, and Θ(1) scalar memory. Thus UN is computed in Θ(log N ) scalar time for N ≥ 2, without forming\nU1 , . . . , UN −1 .\n\n\n5     Exact dyadic phase and tight objective bounds\nExact dyadic scaling turns the balanced Bellman sequence into a canonical continuum profile. In this\nsection, we construct this interpolation and isolate its periodic modulation. The resulting phase law shows\nthat sN = Θ(N −p ), while the normalized sequence N p sN exhibits a nonconstant log-periodic oscillation\nrather than converging. It also determines the exact leading-order modulation of the tight primitive/OBS-S\nobjective coefficient. Secondary regularity and certificate details are deferred to Section C.\n\n5.1    Dyadic scaling and the sharp power envelope\nThe balanced split of 2N is (N, N ). By Corollary 4.2 and K(x, x) = ρx, we have U2N = ρUN . Iteration,\n                     −1\ntogether with sN = UN   , yields\n\n                             U2k N = ρk UN ,     s2k N = ρ−k sN ,   N ≥ 1, k ≥ 0.                         (21)\n\nSet"
+    },
+    {
+      "id": "5.1",
+      "kind": "Lemma",
+      "title": "Silver power inequality",
+      "pages": [
+        12
+      ],
+      "depends_on": [
+        "KDEF"
+      ],
+      "statement_excerpt": "Lemma 5.1. For all x, y ≥ 0,\n\n                                           K(x, y) ≤ (xq + y q )1/q .\n\nEquality holds if and only if x = y or xy = 0.\n    The next proposition shows that the power law is sharp and identifies the equality cases, which follow\ndirectly from Lemma 5.1.",
+      "proof_pages": [
+        26
+      ]
+    },
+    {
+      "id": "5.2",
+      "kind": "Proposition",
+      "title": "Sharp power envelope; dyadic equality",
+      "pages": [
+        12
+      ],
+      "depends_on": [
+        "2.6",
+        "4.2",
+        "5.1"
+      ],
+      "statement_excerpt": "Proposition 5.2. For every N ≥ 1,\n\n                                                   UN ≤ N p .\n\nEquivalently, sN ≥ N −p . Equality holds if and only if N is a power of two.\n\n\n                                                       12\n\fProof. We argue by induction on N . For N = 1, we directly have U1 = 1 = 1p . For N ≥ 2, let a = ⌊N/2⌋\nand b = ⌈N/2⌉. Monotonicity of K, the induction hypothesis, Lemma 5.1, and pq = 1 give\n\n                      UN = K(Ua , Ub ) ≤ K(ap , bp ) ≤ (apq + bpq )1/q = (a + b)p = N p .\n\n                    ̸ b, so the second inequality is strict. If N = 2a, equality holds precisely when Ua = ap .\nIf N is odd, then a =\nRecursing proves that equality occurs exactly at powers of two.\n\n5.2     Adjacent ratios and the canonical interpolation\nThe regularity of the phase profile is controlled by a one-dimensional dynamical system. For N ≥ 1, define\n\n                             UN +1                                             k(r)                       ρr\n                     RN :=         ,     k(r) := K(1, r),          T0 (r) :=        ,   T1 (r) :=             .\n                              UN                                                ρ                        k(r)"
+    },
+    {
+      "id": "5.3",
+      "kind": "Lemma",
+      "title": "Adjacent-ratio contraction",
+      "pages": [
+        13
+      ],
+      "depends_on": [
+        "2.6",
+        "4.2",
+        "ALG1"
+      ],
+      "statement_excerpt": "Lemma 5.3. For every N ≥ 1,\n\n                                       R2N = T0 (RN ),         R2N +1 = T1 (RN ),                                          (22)\n\nand\n                                                                       ρ−1         2(ρ − 1)\n                             1 < RN ≤ ρ,        0 < RN − 1 ≤                     ≤          .                              (23)\n                                                                      2⌊log2 N ⌋      N\n   The proof is deferred to Section C.2. Each binary digit of N selects one of the maps T0 and T1 , both of\nwhich contract toward their common fixed point 1 by a factor at most 1/2. In particular, Proposition 5.2\nand Lemma 5.3 give the estimate\n\n                                                     2(ρ − 1)\n                              0 < UN +1 − UN ≤                UN ≤ 2(ρ − 1)N p−1 .\n                                                        N\n   For each k ≥ 0, define the level-k dyadic grid and its intervals by\n                         \u001a                     \u001b             \u0014         \u0015\n                            j    k         k+1                  j j+1\n                  Dk :=       : 2  ≤  j ≤ 2      ,  I k,j :=     ,       , 2k ≤ j < 2k+1 .\n                           2k                                  2k 2k\n                                                                                                                  S\nThe elements of Dk are called level-k nodes, the sets Ik,j are called level-k intervals, and D :=                     k≥0 Dk is\nthe set of dyadic rationals in [1, 2]. For x = j/2k ∈ Dk , define\n\n                                                  F (x) := ρ−k Uj .                                                        (24)\n\nThis is well defined since the definition is independent of the cho",
+      "proof_pages": [
+        26,
+        27
+      ]
+    },
+    {
+      "id": "5.4",
+      "kind": "Theorem",
+      "title": "Canonical bi-Lipschitz interpolation",
+      "pages": [
+        13
+      ],
+      "depends_on": [
+        "2.6",
+        "EQ21",
+        "5.3"
+      ],
+      "statement_excerpt": "Theorem 5.4. The function in (24) extends uniquely to a strictly increasing bi-Lipschitz map\n\n                                                 F : [1, 2] → [1, ρ]\n\nthat satisfies F (1) = 1, F (2) = ρ, and (25) on every dyadic interval. More precisely,\n\n                          c− (y − x) ≤ F (y) − F (x) ≤ c+ (y − x),               1 ≤ x < y ≤ 2,                            (26)\n\nwhere\n                                            \u0012         \u0013                                 \u0012        \u0013\n                                                1                                            1\n                             c− := (ρ − 1) 1 −            ,        c+ := (ρ − 1) exp                 .\n                                               2ρ                                           2ρ\n\nIn particular, one may take LF := c+ as a Lipschitz constant for F .\n   The proof is given in Section C.3. Its key point is that (23) makes the multiplicative slope distortion at\nsuccessive subdivisions summable. Uniform positive upper and lower bounds on all dyadic slopes then yield\nboth the extension and (26).\n\n\n                                                              13\n\f5.3    Exact phase and its direct consequences\nThe interpolation isolates the dyadic mantissa N/2⌊log2 N ⌋ , while exact scaling accounts for the remaining\ngrowth. Passing to logarithmic coordinates therefore produces the principal result of this section.",
+      "proof_pages": [
+        27,
+        28
+      ]
+    },
+    {
+      "id": "5.5",
+      "kind": "Theorem",
+      "title": "Exact symmetric phase and uniqueness",
+      "pages": [
+        14
+      ],
+      "depends_on": [
+        "EQ21",
+        "5.2",
+        "5.4",
+        "DENSITY"
+      ],
+      "statement_excerpt": "Theorem 5.5. For 0 ≤ t ≤ 1, define\n                                                Φ(t) := ρ−t F (2t ),\nand extend Φ one-periodically. Then Φ is positive, Lipschitz, and nonconstant, and\n                                   UN = N p Φ {log2 N } (N ≥ 1),\n                                                         \u0001\n                                                                                                          (27)\nwhere {·} takes the decimal part of a real. It is the unique continuous one-periodic function with this\nproperty. Furthermore,\n                                 0 < ϕ∗ := min Φ(t) < 1,         max Φ(t) = 1.                            (28)\n                                             t∈[0,1]             t∈[0,1]\n\nOne valid Lipschitz constant on the phase circle is LΦ := 2(log 2)c+ + ρ log ρ."
+    },
+    {
+      "id": "5.6",
+      "kind": "Remark",
+      "title": "Certified minimum enclosure",
+      "pages": [
+        14
+      ],
+      "depends_on": [
+        "C.3",
+        "CERT17"
+      ],
+      "statement_excerpt": "Remark 5.6. The level-17 rational certificate recorded in Section C.6 yields\n                                      0.99281236 < ϕ∗ < 0.99281934.\n   Figure 1 visualizes the exact phase law and the certified enclosure for its minimum.\n   The exact \bphase identity now gives the complete asymptotic picture. For a real sequence {aN }N ≥1 , let\nClust(aN ) := ℓ ∈ R : aNj → ℓ for some subsequence Nj → ∞ denote its set of subsequential limits."
+    },
+    {
+      "id": "5.7",
+      "kind": "Corollary",
+      "title": "Symmetric scalar and rate cluster intervals",
+      "pages": [
+        14
+      ],
+      "depends_on": [
+        "5.5",
+        "DENSITY"
+      ],
+      "statement_excerpt": "Corollary 5.7. The normalized scalar and rate sequences satisfy\n                               \u0012    \u0013                               \u0014      \u0015\n                                 UN                        p            1\n                        Clust          = [ϕ∗ , 1], Clust(N   sN ) =  1,      .\n                                 Np                                     ϕ∗\nIn particular, neither sequence converges."
+    },
+    {
+      "id": "5.8",
+      "kind": "Theorem",
+      "title": "Tight objective-gap phase",
+      "pages": [
+        16
+      ],
+      "depends_on": [
+        "2.5",
+        "5.5",
+        "5.7",
+        "EXT18",
+        "EXT9"
+      ],
+      "statement_excerpt": "Theorem 5.8. Let θN = {log2 N }. For every N ≥ 1,\n                                                          1\n                                           BN =                    .                                      (31)\n                                                   2N p Φ(θN ) − 1\nAs N → ∞,\n                                                  N −p\n                                          BN =           + O(N −2p ),                                     (32)\n                                                 2Φ(θN )\nwhere the O(N −2p ) remainder is uniform in the dyadic phase θN . Furthermore,\n                                                       \u0014       \u0015\n                                               p         1 1\n                                       Clust(N BN ) =     ,      .\n                                                         2 2ϕ∗\nConsequently, the normalized tight objective coefficient has no single asymptotic constant."
+    },
+    {
+      "id": "5.9",
+      "kind": "Remark",
+      "title": "Tightness and scope",
+      "pages": [
+        16
+      ],
+      "depends_on": [
+        "2.5",
+        "5.8",
+        "EXT18",
+        "EXT9"
+      ],
+      "statement_excerpt": "Remark 5.9. The matching instances make BN tight for each corresponding primitive and OBS-S schedule.\nSince BN decreases strictly with UN , balanced scalar optimization also makes this coefficient best within\nthe recursively generated primitive/OBS-S composition classes. These statements do not assert minimax\noptimality over all predetermined positive schedules. Objective-specific constructions such as OBS-F obey a\ndifferent asymmetric recursion and are treated separately in the next section.\n\n\n6    The dyadic phase of the asymmetric OBS-F recursion\nThe preceding sections solve the symmetric primitive/OBS-S Bellman problem. We now turn to the\nobjective-specific optimized basic f-composable schedule (OBS-F). Its recursion attaches an OBS-S block to\nan OBS-F continuation, so the state propagates along an ordered right spine and the optimizing pivot need\nnot be balanced. The rearrangement theorem therefore no longer applies. Nevertheless, the exact symmetric\nsequence UN still controls the asymmetric recursion strongly enough to produce a unique, Lipschitz, and\nnonconstant dyadic phase. The argument has three stages: a reciprocal comparison with UN , a compactness\nconstruction of the phase, and a sharp support analysis that proves strict separation and nonconstancy.\n   We first recall the certificate interface that gives the OBS-F scalar its optimization meaning."
+    },
+    {
+      "id": "6.1",
+      "kind": "Definition",
+      "title": "f-composable certificate",
+      "pages": [
+        16
+      ],
+      "depends_on": [],
+      "statement_excerpt": "Definition 6.1 (Definition 1 in Grimmer et al. [9]). A positive n-step schedule h = (h0 , . . . , hn−1 )⊤ is\nf-composable with rate η > 0 if, for every f ∈ F1 , every minimizer x∗ , and every associated gradient-descent\ntrajectory,\n                                                        η          2\n                                         f (xn ) − f∗ ≤ ∥x0 − x∗ ∥ ,\n                                                        2\nand its rate satisfies the sum–product identities\n                                                                 n−1\n                                                 1               Y\n                                     η=          Pn−1        =         (hi − 1)2 .                        (33)\n                                          1+2     i=0 hi         i=0\n\nThe empty schedule is f-composable with rate one.\n\n\n                                                        16\n\f   The identities in (33) balance the one-dimensional quadratic and Huber witnesses, both of which attain\nthe bound with equality [9, Definition 1 and Lemma 1]. Thus the rate is the exact worst-case objective\ncoefficient for an f-composable schedule, not merely an auxiliary Bellman variable. For a general L-smooth\nconvex objective, applying the dimensionless schedule through xi+1 = xi − (hi /L)∇f (xi ) restores a factor\nL in Definition 6.1.\n\n6.1     Reciprocal Bellman structure and symmetric comparison\nThe f-join theorem of Grimmer et al. [9, Theorem 1] combines an s-composable prefix of rate α with an\nf-composable continuation of rate β into an f-composable schedule of rate\n                                                             2αβ\n                                      T (α, β) :=             p          .\n                                                    α + 4β +    α2 +"
+    },
+    {
+      "id": "6.2",
+      "kind": "Proposition",
+      "title": "Reciprocal sandwich",
+      "pages": [
+        17
+      ],
+      "depends_on": [
+        "2.5",
+        "4.2",
+        "5.5",
+        "D.1",
+        "FREC",
+        "RAYS"
+      ],
+      "statement_excerpt": "Proposition 6.2. For every N ≥ 1,\n\n                                            2UN − 1 ≤ WN ≤ ρUN .                                          (38)\n\nConsequently, if t = {log2 m}, then\n                                                1      F     1\n                                                    ≤ Cm ≤       .\n                                              ρΦ(t)        2Φ(t)"
+    },
+    {
+      "id": "6.3",
+      "kind": "Theorem",
+      "title": "Uniform OBS-F phase and cluster interval",
+      "pages": [
+        18
+      ],
+      "depends_on": [
+        "5.5",
+        "6.2",
+        "D.2",
+        "RAYS",
+        "DENSITY"
+      ],
+      "statement_excerpt": "Theorem 6.3. There exists a unique positive Lipschitz function ΨF : T → (0, ∞) such that the interpolation\nfunctions Ψk converge uniformly to ΨF on [0, 1]:\n\n                                                ∥Ψk − ΨF ∥L∞ ([0,1]) → 0.                                          (39)\n\nEquivalently, because the maximal interpolation mesh tends to zero and ΨF is Lipschitz,\n\n                                         sup       N p ηN\n                                                        F\n                                                          − ΨF ({log2 N }) → 0.\n                                     2k ≤N ≤2k+1\n\nThus\n                                         F\n                                        ηN = N −p ΨF ({log2 N }) + o(N −p )\n\nas N → ∞. Moreover,\n\n                                   Clust(N p ηN\n                                              F\n                                                ) = ΨF (T) = [min ΨF , max ΨF ].                                   (40)\n\nThus (40) is the complete cluster interval of the normalized tight objective coefficient in (35). Equivalently,\nthe optimized OBS-F schedules satisfy\n                                                                         \u0003L            2\n                         f (xN −1 ) − f∗ ≤ N −p ΨF ({log2 N }) + o(N −p )\n                                          \u0002\n                                                                            ∥x0 − x∗ ∥                             (41)\n                                                                          2\nwhere the o(N −p ) remainder has the same dyadic-block uniformity. One may take 2Lobs log 2 as a Lipschitz\nconstant for ΨF .\n\n\n                                                            18\n\fProof. For adjacent interpolation nodes,"
+    },
+    {
+      "id": "6.4",
+      "kind": "Lemma",
+      "title": "Sharp support inequality; equality ratio",
+      "pages": [
+        19
+      ],
+      "depends_on": [
+        "ADEF"
+      ],
+      "statement_excerpt": "Lemma 6.4. Let ξ∗ ∈ (0, 1) be the unique interior solution of\n\n                                                     ξ 2q−1 (2 − ξ) = 1,                                 (42)\n\nand define\n\n                                               1 − ξ∗                      1 − ξ∗2q\n                                       τ∗ :=          ,    Bsup := 2q                .\n                                                2ξ∗2                      (1 − ξ∗ )q\nThen Bsup > 2q and, for all u, w ≥ 0,\n\n                                               A(u, w)q ≤ Bsup uq + wq .                                 (43)\n\nFor u, w > 0, equality holds if and only if u/w = τ∗ . Equality also holds when u = 0, whereas the inequality\nis strict when w = 0 < u.\n   The proof is the one-variable maximization in Appendix D.3. Set\n                                                                                           Bsup r∗\n                             p\n                      d∗ := Bsup ,     c∗ := d−1   −p\n                                              ∗ = Bsup ,           r∗ := τ∗q ,   α∗ :=               .\n                                                                                         1 + Bsup r∗\n\nNumerically, Bsup ≈ 1.97530507031103 and c∗ ≈ 0.420809352823451. The support inequality (43) recovers\nthe lower barrier CN ≥ c∗ = clow established by Grimmer et al. [9, Theorem 5]. Below we will establish a\nstrict separation c∗ < mint∈T ΨF (t), obtained from the deficit and phase-rigidity arguments. The exact\ndeficit identity in Proposition D.3 then shows what asymptotic contact with this barrier would require:\nalong an optimizing right spine, every macroscopic pivot must simultaneously saturate the symmetric power\nbound and the support inequality. The latter selects the unique fraction α∗ , while the former",
+      "proof_pages": [
+        33
+      ]
+    },
+    {
+      "id": "6.5",
+      "kind": "Theorem",
+      "title": "Nonconstant phase; strict support separation",
+      "pages": [
+        19
+      ],
+      "depends_on": [
+        "6.3",
+        "D.3",
+        "D.6",
+        "D.7",
+        "D.8",
+        "D.9"
+      ],
+      "statement_excerpt": "Theorem 6.5. The phase ΨF is nonconstant and satisfies\n                                                                                 c∗\n                                       c∗ < min ΨF (t) < max ΨF (t) ≤               .                    (44)\n                                               t∈T                t∈T            ϕ∗\nConsequently, the cluster interval in (40) is nondegenerate and lies strictly above the sharp homogeneous\nsupport barrier. By (41), this is precisely the nondegenerate interval of asymptotic leading constants in the\ntight OBS-F objective-gap guarantee.\n\n\n                                                             19\n\fProof. The support and deficit decomposition are established in Proposition D.3. The dyadic-ray separation\nand constant-phase rigidity in Theorem D.6 and Lemma D.7 imply that ΨF is nonconstant. The global\nstrict lower bound and the upper phase enclosure are proved in Theorem D.8 and Proposition D.9. These\nstatements give (44), while (40) identifies the complete cluster interval.\n\n   Figure 2 illustrates the asymmetric phase through a finite-scale approximation, together with its\ntheoretical support bounds.\n\n                       Asymmetric OBS-F phase ª F                                                        ªk ! ªF\n\n              0.4240                      Theoretical upper enclosure: ª F ∙ c ¤ =Á ¤ < 0:423856\n\n                                      Sampled maximum\n                                      ª 18 ¼ 0:42311312; t ¼ 0:007838\n              0.4232\n                                                         k = 18;    2 18 ∙ N ∙ 2 19\n                                                      kª 18 ¡ ª 17 k 1 ¼ 9:82 £ 10 ¡7\n    ª k (t)\n\n\n\n\n              0.4224\n\n\n\n              0.4216"
+    },
+    {
+      "id": "B.1",
+      "kind": "Theorem",
+      "title": "Number of optimal plane trees",
+      "pages": [
+        24
+      ],
+      "depends_on": [
+        "4.4",
+        "4.6"
+      ],
+      "statement_excerpt": "Theorem B.1. The sequence {TN }N ≥1 satisfies\n                                                           X\n                                     T1 = 1,       TN =              Tm TN −m     (N ≥ 2).                   (52)\n                                                          m∈MN\n\nMore explicitly, write N = ν2ℓ , where ν is odd. For N ≥ 2,\n\n\n                                                                24\n\f                           2\n  (i) if ν = 1, then TN = TN/2 = 1;\n (ii) if ν > 1 and ℓ = 0, then\n                                                       TN = 2T(N −1)/2 T(N +1)/2 ;\n\n (iii) if ν > 1 and ℓ ≥ 1, setting\n                                       a = (ν − 1)2ℓ−1 ,         b = ν2ℓ−1 ,       c = (ν + 1)2ℓ−1 ,\n      gives\n                                                           TN = 2Ta Tc + Tb2 .                                    (53)"
+    },
+    {
+      "id": "C.1",
+      "kind": "Theorem",
+      "title": "Derivative products and one-sided derivatives",
+      "pages": [
+        28
+      ],
+      "depends_on": [
+        "5.3",
+        "5.4"
+      ],
+      "statement_excerpt": "Theorem C.1. There exists a bounded function D : [1, 2] → [c− , c+ ] such that\n                                                     Z x\n                                        F (x) = 1 +      D(u) du.                                                    (60)\n                                                                        1\n\nThe function D is continuous at every nondyadic point x ∈ (1, 2), and F ′ (x) = D(x) there. At every interior dyadic\npoint, both one-sided derivatives of F exist.\n    For a binary path ϵ = {ϵi }i≥1 ∈ {0, 1}N , set r0 = ρ and recursively define\n                                                     (\n                                                      T0 (ri−1 ), ϵi = 0,\n                                               ri =                                                             (61)\n                                                      T1 (ri−1 ), ϵi = 1.\nFor k ≥ 1, define the partial product\n                                                                          k\n                                                                          Y\n                                                   Pk (ϵ) := (ρ − 1)            wϵi (ri−1 ).\n                                                                          i=1\n\nThen Pk converges uniformly on the path space {0, 1}N to\n                                                                          ∞\n                                                                          Y\n                                                      P (ϵ) := (ρ − 1)          wϵi (ri−1 )                          (62)\n                                                                          i=1\n\nin the precise sense that supϵ |Pk (ϵ) − P (ϵ)| → 0. More precisely, with M = 1/[4ρ(ρ − 1)],\n                                                      ∞\n                                                      X\n                                          sup              |log wϵi (ri−1 )| ≤ 4M (ρ − 1)2−k .\n                                      ϵ∈{0,1}N i=k+1\n\nIf x ∈ (1, 2) is nondyadic and x − 1 = 0.ϵ1 ϵ2 · · · , then D(x) = F ′ (x) = P (ϵ). If an interior dyadic point x0 has the\ntwo binary expansions\n                                          x0 − 1 = 0.ϵ1 · · · ϵm 000 · · ·\n                                                      = 0.ϵ1 · · · ϵm−1 0111 · · · ,           ϵm = 1,\n\n\n                                                                     28\n\fthen\n                                             F+′ (x0 ) = P (ϵ1 , . . . , ϵm , 0, 0, . . .),\n                                             F−′ (x0 ) = P (ϵ1 , . . . , ϵm−1 , 0, 1, 1, . . .)."
+    },
+    {
+      "id": "C.2",
+      "kind": "Corollary",
+      "title": "Strict corner at 3/2",
+      "pages": [
+        30
+      ],
+      "depends_on": [
+        "C.1",
+        "CERT6"
+      ],
+      "statement_excerpt": "Corollary C.2. The two one-sided derivatives at x = 3/2 satisfy\n                                                    F−′ (3/2) > F+′ (3/2).                                                  (63)\nConsequently, F is not differentiable at 3/2 and is not continuously differentiable on [1, 2]."
+    },
+    {
+      "id": "C.3",
+      "kind": "Theorem",
+      "title": "Nested finite phase-minimum certificates",
+      "pages": [
+        31
+      ],
+      "depends_on": [
+        "2.6",
+        "EQ21",
+        "5.2",
+        "5.4",
+        "5.5"
+      ],
+      "statement_excerpt": "Theorem C.3. For every k ≥ 0,\n                                                                                       p\n                                         ϕk ≤ ϕ∗ ≤ ϕk ,      0 ≤ ϕk − ϕ k ≤               .\n                                                                                       2k\nThe sequence {ϕk } is nondecreasing, the sequence {ϕk } is nonincreasing, and both converge to ϕ∗ . All quantities\nthrough level k are computable in O(2k ) scalar operations."
+    },
+    {
+      "id": "D.1",
+      "kind": "Lemma",
+      "title": "Local A-versus-K inequalities",
+      "pages": [
+        32
+      ],
+      "depends_on": [
+        "2.6",
+        "ADEF"
+      ],
+      "statement_excerpt": "Lemma D.1. For x, y > 0,\n                                             A(x, ρy) ≤ ρK(x, y),                                                    (67)\n                                         A(x, 2y − 1) ≥ 2K(x, y) − 1,          x, y ≥ 1.                             (68)"
+    },
+    {
+      "id": "D.2",
+      "kind": "Lemma",
+      "title": "Discrete modulus for U, W, C",
+      "pages": [
+        32
+      ],
+      "depends_on": [
+        "4.2",
+        "5.2",
+        "5.4",
+        "5.5",
+        "6.2",
+        "FREC"
+      ],
+      "statement_excerpt": "Lemma D.2. Let LF be a Lipschitz constant for F , set LU := max{1, LF }, and put ϕ∗ := min Φ. With U0 = 0,\nfor every m, N ≥ 1,\n                                               0 < Um − Um−1 ≤ LU mp−1 ,\n                                              0 < WN +1 − WN ≤ 4LU N p−1 ,\n                                                                  4LU + ρp\n                                                  |CN +1 − CN | ≤          .\n                                                                    ϕ2∗ N\n\n                                                               32\n\fProof. The first estimate is immediate for m = 1. If m ≥ 2, put r = ⌊log2 (m − 1)⌋. Exact interpolation gives\n                                          Uj = ρr F (j/2r ),     j = m − 1, m,\nand hence\n                                  Um − Um−1 ≤ LF ρr 2−r = LF 2r(p−1) ≤ LU mp−1 .\nStrict positivity follows from Corollary 4.2.\n    The join satisfies A(0, w) = w and\n                                                              2w\n                                          ∂u A(u, w) = 2 + √         ≤ 4.\n                                                            w2 + 8uw\nThe split m = 1 in (37) gives WN +1 > WN . Choose a maximizing pivot m ∈ {1, . . . , N } for WN +1 . If m ≥ 2, the\nsplit (m − 1, N + 1 − m) is admissible for WN ; if m = 1, use A(U0 , WN ) = WN . Therefore\n                                WN +1 − WN ≤ A(Um , WN +1−m ) − A(Um−1 , WN +1−m )\n                                             ≤ 4(Um − Um−1 ) ≤ 4LU N p−1 .\n   The reciprocal sandwich and ϕ∗ ≤ UN /N p ≤ 1 give ϕ∗ ≤ DN ≤ ρ. Thus\n                                                              \u0012                 \u0013\n                                           WN +1 − WN            1        1\n                           |DN +1 − DN | ≤              + W N"
+    },
+    {
+      "id": "D.3",
+      "kind": "Proposition",
+      "title": "Support barrier and exact deficit identity",
+      "pages": [
+        33
+      ],
+      "depends_on": [
+        "5.2",
+        "6.4",
+        "FREC"
+      ],
+      "statement_excerpt": "Proposition D.3. For every N ≥ 1,\n                                          q\n                                         WN ≤ Bsup N,         CN = N p ηN\n                                                                        F\n                                                                          ≥ c∗ .\n                       q\nDefine EN := Bsup N − WN ≥ 0. If m is any maximizing pivot for WN and r = N − m, then\n                                                      q\n                                      EN = Bsup (m − Um ) + Er + σ(Um , Wr ),                                      (70)\nwhere\n                                         σ(u, w) := Bsup uq + wq − A(u, w)q ,\nand all three terms on the right-hand side of (70) are nonnegative.\n\n\n                                                           33\n\f                                              q"
+    },
+    {
+      "id": "D.4",
+      "kind": "Lemma",
+      "title": "Strict interior power envelope",
+      "pages": [
+        34
+      ],
+      "depends_on": [
+        "2.6",
+        "5.1",
+        "5.2",
+        "5.4",
+        "5.5"
+      ],
+      "statement_excerpt": "Lemma D.4. For every x ∈ (1, 2),\n                                                          F (x) < xp .\nEquivalently, Φ(t) < 1 for every nonzero phase t ∈ (0, 1)."
+    },
+    {
+      "id": "D.5",
+      "kind": "Lemma",
+      "title": "Contact fraction and dyadic exclusion",
+      "pages": [
+        34
+      ],
+      "depends_on": [
+        "6.4"
+      ],
+      "statement_excerpt": "Lemma D.5. The contact fraction satisfies\n                                              α∗ = 1 − ξ∗2q ,        1 − α∗ = ξ∗2q ,                                     (71)\nand\n                                                       1           1\n                                                         < 1 − α∗ < .                                                    (72)\n                                                       4           2\nIn particular, 1/2 < α∗ < 1 and x∗ ∈ (1, 2)."
+    },
+    {
+      "id": "D.6",
+      "kind": "Theorem",
+      "title": "Strict dyadic-ray separation",
+      "pages": [
+        35
+      ],
+      "depends_on": [
+        "6.3",
+        "D.8"
+      ],
+      "statement_excerpt": "Theorem D.6. The dyadic-ray limit satisfies\n                                                C1F = lim (2k )p f2k > c∗ .\n                                                            k→∞"
+    },
+    {
+      "id": "D.7",
+      "kind": "Lemma",
+      "title": "Constant-phase rigidity",
+      "pages": [
+        35
+      ],
+      "depends_on": [
+        "6.3",
+        "6.4",
+        "D.3",
+        "EQ21",
+        "FREC"
+      ],
+      "statement_excerpt": "Lemma D.7. If the phase profile in Corollary 6.3 were constant, then it would be identically equal to c∗ ."
+    },
+    {
+      "id": "D.8",
+      "kind": "Theorem",
+      "title": "Strict separation at every phase",
+      "pages": [
+        36
+      ],
+      "depends_on": [
+        "CONTACT",
+        "D.4",
+        "D.5",
+        "6.3"
+      ],
+      "statement_excerpt": "Theorem D.8. For every t ∈ T,\n                                                        ΨF (t) > c∗ .\nConsequently, mint∈T ΨF (t) > c∗ ."
+    },
+    {
+      "id": "D.9",
+      "kind": "Proposition",
+      "title": "Upper phase enclosure",
+      "pages": [
+        36
+      ],
+      "depends_on": [
+        "5.5",
+        "6.3",
+        "6.4",
+        "FREC"
+      ],
+      "statement_excerpt": "Proposition D.9. For every t ∈ T,\n                                                              c∗\n                                                       ΨF (t) ≤  .\n                                                              ϕ∗\nEquivalently, with ∆F (t) = 1/ΨF (t), one has ∆F (t) ≥ d∗ ϕ∗ ."
+    },
+    {
+      "id": "SMALL",
+      "kind": "Auxiliary",
+      "title": "Uniform small-pivot estimate (75)",
+      "pages": [
+        34
+      ],
+      "depends_on": [
+        "D.3",
+        "5.5",
+        "6.4"
+      ]
+    },
+    {
+      "id": "CONCENTRATION",
+      "kind": "Auxiliary",
+      "title": "First macro pivot on the actual finite spine",
+      "pages": [
+        34,
+        35
+      ],
+      "depends_on": [
+        "SMALL",
+        "D.3",
+        "D.5",
+        "6.4"
+      ]
+    },
+    {
+      "id": "CONTACT",
+      "kind": "Auxiliary",
+      "title": "Contact propagation using the actual continuation",
+      "pages": [
+        35
+      ],
+      "depends_on": [
+        "CONCENTRATION",
+        "6.3",
+        "5.5"
+      ]
+    },
+    {
+      "id": "EXT18",
+      "kind": "External",
+      "title": "Zhang-Jiang: ConPP closure and Huber bound",
+      "pages": [
+        4,
+        15
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "EXT9",
+      "kind": "External",
+      "title": "Grimmer-Shu-Wang: s/f joins and guarantees",
+      "pages": [
+        4,
+        16,
+        17
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "EXT36",
+      "kind": "External",
+      "title": "Grimmer-Shu-Wang: dyadic improvement and lower bound",
+      "pages": [
+        17
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "KDEF",
+      "kind": "Definition",
+      "title": "Radical kernel K, rho, p, q",
+      "pages": [
+        5,
+        6,
+        12
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "ADEF",
+      "kind": "Definition",
+      "title": "Asymmetric radical kernel A",
+      "pages": [
+        17
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "PDEF",
+      "kind": "Definition",
+      "title": "Four-factor conjugate polynomial (13)",
+      "pages": [
+        6
+      ],
+      "depends_on": [
+        "KDEF"
+      ]
+    },
+    {
+      "id": "QDEF",
+      "kind": "Definition",
+      "title": "Elementary symmetric quartic (14)",
+      "pages": [
+        7
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "EQ5",
+      "kind": "Bridge",
+      "title": "Affine and reciprocal conjugacies (5)",
+      "pages": [
+        5
+      ],
+      "depends_on": [
+        "KDEF"
+      ]
+    },
+    {
+      "id": "EQ21",
+      "kind": "Bridge",
+      "title": "Exact dyadic scaling (21)",
+      "pages": [
+        12
+      ],
+      "depends_on": [
+        "2.6",
+        "4.2"
+      ]
+    },
+    {
+      "id": "FREC",
+      "kind": "Bridge",
+      "title": "OBS-F reciprocal recursion (37)",
+      "pages": [
+        17
+      ],
+      "depends_on": [
+        "6.1",
+        "2.5",
+        "ADEF",
+        "EXT9"
+      ]
+    },
+    {
+      "id": "RAYS",
+      "kind": "Bridge",
+      "title": "Existence and invariance of fixed-ray limits",
+      "pages": [
+        17
+      ],
+      "depends_on": [
+        "FREC",
+        "D.1"
+      ]
+    },
+    {
+      "id": "DENSITY",
+      "kind": "Bridge",
+      "title": "Density of integer logarithmic phases",
+      "pages": [
+        14,
+        19
+      ],
+      "depends_on": []
+    },
+    {
+      "id": "CERT6",
+      "kind": "Certificate",
+      "title": "Six-step rational interval certificate",
+      "pages": [
+        30,
+        31
+      ],
+      "depends_on": [
+        "5.3",
+        "5.4"
+      ]
+    },
+    {
+      "id": "CERT17",
+      "kind": "Certificate",
+      "title": "Level-17 outward-rounded certificate",
+      "pages": [
+        31
+      ],
+      "depends_on": [
+        "4.2"
+      ]
+    },
+    {
+      "id": "EQ66",
+      "kind": "Unnumbered",
+      "title": "Marginal increment law (66)",
+      "pages": [
+        32
+      ],
+      "depends_on": [
+        "EQ21",
+        "C.1"
+      ]
+    },
+    {
+      "id": "SEED",
+      "kind": "Unnumbered",
+      "title": "Fixed dyadic seeds preserve the exponent",
+      "pages": [
+        32
+      ],
+      "depends_on": [
+        "EQ21"
+      ]
+    },
+    {
+      "id": "BEXP",
+      "kind": "Unnumbered",
+      "title": "Exponential multiplicity on N=3*2^k",
+      "pages": [
+        25
+      ],
+      "depends_on": [
+        "B.1"
+      ]
+    }
+  ]
+}

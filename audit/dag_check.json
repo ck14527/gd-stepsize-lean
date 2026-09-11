@@ -1,0 +1,8 @@
+{
+  "nodes": 66,
+  "edges": 154,
+  "numbered_results": 36,
+  "acyclic": true,
+  "all_numbered_results_accounted_for": true,
+  "important_distinction": "Acyclicity is not proof correctness; this is the reviewed mathematical graph."
+}
